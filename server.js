@@ -23,6 +23,23 @@ mongoose.connect(MONGODB_URI)
   }
 });
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Guest Review Management API',
+    version: '1.0.0',
+    status: 'running',
+    endpoints: {
+      health: '/api/health',
+      users: '/api/users',
+      reviews: '/api/reviews',
+      promotions: '/api/promotions',
+      events: '/api/events',
+      analytics: '/api/analytics'
+    }
+  });
+});
+
 // Routes
 app.use('/api/users', require('./routes/users'));
 app.use('/api/reviews', require('./routes/reviews'));
